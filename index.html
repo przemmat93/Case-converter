@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="title">Case Converter</div>
+
+<textarea id="text"></textarea>
+<button id="upper-case">upper-case</button>
+<button id="lower-case">lower-case</button>
+<button id="proper-case">proper-case</button>
+<button id="sentence-case">sentence-case</button>
+<button id="save-text-file">save-text-file</button>
+<script type="text/javascript">
+    document.getElementById("upper-case").addEventListener("click", function() {
+            document.getElementById("text").value = document.getElementById("text").value.toUpperCase();
+        }
+    );
+    document.getElementById("lower-case").addEventListener("click", function() {
+            document.getElementById("text").value = document.getElementById("text").value.toLowerCase();
+        }
+    );
+    document.getElementById("proper-case").addEventListener("click", function capitalizeFirstLetters(string) {
+        let yourPhrase = document.querySelector("textarea");
+        let words = yourPhrase.value.toLowerCase().split(' ');
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        text.value = words.join(" ");
+        trim;
+    });
+
+    document.getElementById("sentence-case").addEventListener("click", function capitalizeFirstLetter(string) {
+            let text = document.querySelector("textarea");
+            let arr = text.value.toLowerCase().split(".");
+            arr[0] = arr[0].substr(0, 1).toUpperCase() + arr[0].substr(1);
+            for (let z = 0; z < arr.length; z++) {
+                if (arr[z].substr(0, 1) === " ") {
+                    arr[z] = arr[z].substr(1, 1).toUpperCase() + arr[z].substr(2);
+                }
+            }
+            text.value = arr.join(". ").trim();
+
+    }
+    );
+    document.getElementById("save-text-file").addEventListener("click", function download() {
+        let element = document.createElement("a");
+        let textarea = document.querySelector("textarea").value;
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textarea));
+        element.setAttribute('download', "text");
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    })
+
+    // Start file download.
+    //download("text.txt",textarea.value);
+</script>
+
+
+
+</body>
+</html>
